@@ -9,8 +9,14 @@ import time
 
 
 with open("webhook_val.txt", "r") as f:
-    data = f.read().strip()
-    WEBHOOK_URL = data
+    for line in f:
+        if "webhook:" in line:
+            WEBHOOK_URL = line.split("webhook:")[1].strip()
+        elif "bot_token:" in line:
+            BOT_TOKEN = line.split("bot_token:")[1].strip()
+        elif "channel_id:" in line:
+            CHANNEL_ID = line.split("channel_id:")[1].strip()
+    #print(data)
 
 # WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
 LAST_VALUE_FILE = "lastvalue.txt"
