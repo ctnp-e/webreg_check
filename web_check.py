@@ -2,9 +2,35 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import time
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import Select
+import time
 
-URL = "https://www.reg.uci.edu/perl/WebSoc"
-data = {"Department Name": "COMPSCI"}
+# Configure your driver (Chrome in this example)
+driver = webdriver.Chrome()
+
+# Load WebSOC page
+driver.get("https://www.reg.uci.edu/perl/WebSoc")
+
+# 2. Select department drop-down
+dept_dropdown = Select(driver.find_element(By.NAME, "Dept")) 
+dept_dropdown.select_by_visible_text("COMPSCI . . . . Computer Science")
+time.sleep(1)
+
+
+input_box = driver.find_element(By.NAME, "CourseNum")
+input_box.send_keys("142a")
+
+
+input_box = driver.find_element(By.NAME, "InstrName")
+input_box.send_keys("demsky")
+
+# 3. Submit search
+driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Text Results']").click()
+time.sleep(2)  # wait for results to load
+
+
 
 WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
 LAST_VALUE_FILE = "lastvalue.txt"
@@ -15,14 +41,6 @@ def send_message(msg):
     requests.post(WEBHOOK_URL, json={"content": msg})
 
 def get_current_value():
-    response = requests.get(URL)
-    soup = BeautifulSoup(response.text, "html.parser")
-
-    '''# Example: the value is inside <span id="price">
-    value = soup.find("span", {"id": "price"}).text.strip()
-    return value
-    '''
-    
     text = soup.get_text(separator="\n", strip=True)
 
     print(text)
