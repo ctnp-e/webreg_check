@@ -16,18 +16,32 @@ with open("webhook_val.txt", "r") as f:
 LAST_VALUE_FILE = "lastvalue.txt"
 TIME_CHECK = 120 #seconds
 
+
+
+
+
 def add_to_curr_vals(particular_inp) :
     result = particular_inp.strip().split(" ")
     result = [x for x in result if x.strip()]
 
-    ohyea = 0
-    for line in result:
-        print(str(ohyea) + " : " + line)
-        ohyea += 1
+    # ohyea = 0
+    # for line in result:
+    #     print(str(ohyea) + " : " + line)
+    #     ohyea += 1
     
     total_len = len(result)
-    print(result[total_len-6] + " " + result[total_len-7])
+    max = result[total_len-6]
+    curr = result[total_len-5]
+    if (curr != max) :
+        alert()
 
+    print_to_curr_vals( max + " " + curr)
+
+
+def print_to_curr_vals(line) :
+    with open("current_vals.txt", "a") as f:
+        f.write(str(round(time.time())) + " : " + line + "\n")
+    
 
 
 def GO() :
@@ -59,53 +73,24 @@ def GO() :
     soup = BeautifulSoup(html, "html.parser")
 
     particular_inp = ""
-
     # finds exact course
     text = soup.get_text(separator="\n", strip=True)
     for line in text.splitlines():
         if "34130" in line :
             add_to_curr_vals(line)
+    
+    
+    driver.quit()
 
 
-GO()
- 
+def main():
 
-# with open("current_vals.txt", "w") as f:
-#             f.write(line + "\n")
-
-
-
-
+    open('current_vals.txt', 'w').close()
+    
+    while True:
+        GO()
+        time.sleep(10)
 
 
+main()
 
-# print(text)
-
-def send_message(msg):
-    requests.post(WEBHOOK_URL, json={"content": msg})
-
-def get_current_value():
-    text = soup.get_text(separator="\n", strip=True)
-
-    print(text)
-
-def get_last_value():
-    try:
-        with open(LAST_VALUE_FILE, "r") as f:
-            return f.read().strip()
-    except FileNotFoundError:
-        return None
-
-def save_last_value(value):
-    with open(LAST_VALUE_FILE, "w") as f:
-        f.write(value)
-
-while False:
-    current = get_current_value()
-    old = get_last_value()
-
-    if old != current:
-        send_message(f"Value changed!\nOld: {old}\nNew: {current}")
-        save_last_value(current)
-
-    time.sleep(TIME_CHECK)
