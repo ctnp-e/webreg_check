@@ -18,6 +18,14 @@ TIME_CHECK = 120 #seconds
 
 
 
+# print(text)
+
+def send_message(msg):
+    requests.post(WEBHOOK_URL, json={"content": msg})
+
+def alert(max, curr):
+    send_message(f"Value changed! REGISTER NOW!\nMAX: {max}\tCURR: {curr}")
+
 
 
 def add_to_curr_vals(particular_inp) :
@@ -31,11 +39,12 @@ def add_to_curr_vals(particular_inp) :
     
     total_len = len(result)
     max = result[total_len-6]
-    curr = result[total_len-5]
+    # curr = result[total_len-5]
+    curr = 1 #testing
     if (curr != max) :
-        alert()
+        alert(max, curr)
 
-    print_to_curr_vals( max + " " + curr)
+    print_to_curr_vals( str(max) + " " + str(curr))
 
 
 def print_to_curr_vals(line) :
