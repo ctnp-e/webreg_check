@@ -5,6 +5,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.chrome.options import Options
 import time
 
 
@@ -16,11 +17,13 @@ with open("webhook_val.txt", "r") as f:
             BOT_TOKEN = line.split("bot_token:")[1].strip()
         elif "channel_id:" in line:
             CHANNEL_ID = int(line.split("channel_id:")[1].strip())
+        elif "user:" in line:
+            USER = int(line.split("user:")[1].strip())
     #print(data)
 
 # WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
 LAST_VALUE_FILE = "lastvalue.txt"
-TIME_CHECK = 120 #seconds
+TIME_CHECK = 600 #seconds
 
 
 
@@ -30,9 +33,10 @@ def send_message(msg):
     requests.post(WEBHOOK_URL, json={"content": msg})
 
 def alert(max, curr):
-    send_message(f"Value changed! REGISTER NOW!\nMAX: {max}\tCURR: {curr}")
+    send_message(f"Value changed! REGISTER NOW!\nMAX: {max}\tCURR: {curr} <@{USER}>")
 
-
+def sad_alert(max, curr) :
+    send_message(f"No change detected... :( \t\t MAX: {max}\tCURR: {curr}")
 
 def add_to_curr_vals(particular_inp) :
     result = particular_inp.strip().split(" ")
@@ -44,11 +48,13 @@ def add_to_curr_vals(particular_inp) :
     #     ohyea += 1
     
     total_len = len(result)
-    max = result[total_len-6]
-    # curr = result[total_len-5]
-    curr = 1 #testing
+    max = result[total_len-7]
+    curr = result[total_len-6]
+    # curr = 1 #testing
     if (curr != max) :
         alert(max, curr)
+    else :
+        sad_alert(max, curr)
 
     print_to_curr_vals( str(max) + " " + str(curr))
 
@@ -61,7 +67,11 @@ def print_to_curr_vals(line) :
 
 def GO() :
 
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless")              # Chrome runs with NO window
+    options.add_argument("--disable-gpu")           # recommended on Windows
+    
+    driver = webdriver.Chrome(options=options)
     driver.get("https://www.reg.uci.edu/perl/WebSoc") # loads WebSOC page
 
     # select dept via drop down
@@ -106,5 +116,4 @@ def main():
         GO()
         time.sleep(TIME_CHECK)
 
-
-
+GO()
