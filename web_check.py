@@ -15,7 +15,7 @@ with open("webhook_val.txt", "r") as f:
         elif "bot_token:" in line:
             BOT_TOKEN = line.split("bot_token:")[1].strip()
         elif "channel_id:" in line:
-            CHANNEL_ID = line.split("channel_id:")[1].strip()
+            CHANNEL_ID = int(line.split("channel_id:")[1].strip())
     #print(data)
 
 # WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
@@ -104,8 +104,7 @@ def main():
     
     while True:
         GO()
-        time.sleep(10)
+        time.sleep(TIME_CHECK)
 
 
-main()
 

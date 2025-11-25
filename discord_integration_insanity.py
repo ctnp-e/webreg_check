@@ -1,13 +1,10 @@
 import discord
 import asyncio
 import sys
+import web_check
 
-TOKEN =  # TODO : FIX THIS
-EXIT_CHANNEL_ID = # TODO : FIX THIS
-
-
-# TODO : OBSERVE WAHT THE HELL IS GOING ON IN HERE!!!
-###########EXAMPLE CODE
+TOKEN =  web_check.BOT_TOKEN
+EXIT_CHANNEL_ID = web_check.CHANNEL_ID
 
 
 intents = discord.Intents.default()
@@ -21,8 +18,8 @@ async def check_websoc_forever():
     global stop_program
     while not stop_program:
         print("Running GO()...")
-        GO()
-        await asyncio.sleep(10)
+        web_check.GO()
+        await asyncio.sleep(web_check.TIME_CHECK)
 
     print("Program stopped by Discord message")
     await client.close()
@@ -31,6 +28,8 @@ async def check_websoc_forever():
 @client.event
 async def on_ready():
     print(f"Bot logged in as {client.user}")
+    open('current_vals.txt', 'w').close()
+    
     asyncio.create_task(check_websoc_forever())
 
 @client.event
