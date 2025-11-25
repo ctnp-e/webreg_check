@@ -8,43 +8,56 @@ from selenium.webdriver.support.ui import Select
 import time
 
 
-
 WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
 LAST_VALUE_FILE = "lastvalue.txt"
-
 TIME_CHECK = 120 #seconds
 
 
-# Configure your driver (Chrome in this example)
 driver = webdriver.Chrome()
+driver.get("https://www.reg.uci.edu/perl/WebSoc") # loads WebSOC page
 
-# Load WebSOC page
-driver.get("https://www.reg.uci.edu/perl/WebSoc")
-
-# 2. Select department drop-down
+# select dept via drop down
+# TODO : make dict to select from terminal
 dept_dropdown = Select(driver.find_element(By.NAME, "Dept")) 
 dept_dropdown.select_by_visible_text("COMPSCI . . . . Computer Science")
 time.sleep(1)
 
-
+# select particular course num
+# TODO : make this optional
 input_box = driver.find_element(By.NAME, "CourseNum")
 input_box.send_keys("142a")
 
-
+# select particular instructor
+# TODO : make this optional
 input_box = driver.find_element(By.NAME, "InstrName")
 input_box.send_keys("demsky")
 
-# 3. Submit search
+
 driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Text Results']").click()
 time.sleep(2)  # wait for results to load
 
 html = driver.page_source
 soup = BeautifulSoup(html, "html.parser")
 
+# finds exact course
 text = soup.get_text(separator="\n", strip=True)
 for line in text.splitlines():
     if "34130" in line :
-        print(line)
+        with open("current_vals.txt", "w") as f:
+            f.write(line + "\n")
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # print(text)
 
