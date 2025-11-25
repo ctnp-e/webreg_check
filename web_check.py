@@ -7,8 +7,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 import time
 
+with open("webhook_val.txt", "r") as f:
+    data = f.read().strip()
+    WEBHOOK_URL = data
 
-WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
+# WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
 LAST_VALUE_FILE = "lastvalue.txt"
 TIME_CHECK = 120 #seconds
 
