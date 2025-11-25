@@ -23,7 +23,7 @@ with open("webhook_val.txt", "r") as f:
 
 # WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
 LAST_VALUE_FILE = "lastvalue.txt"
-TIME_CHECK = 600 #seconds
+TIME_CHECK = 1800 #seconds
 
 
 
