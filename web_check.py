@@ -7,6 +7,14 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import Select
 import time
 
+
+
+WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
+LAST_VALUE_FILE = "lastvalue.txt"
+
+TIME_CHECK = 120 #seconds
+
+
 # Configure your driver (Chrome in this example)
 driver = webdriver.Chrome()
 
@@ -30,12 +38,15 @@ input_box.send_keys("demsky")
 driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Text Results']").click()
 time.sleep(2)  # wait for results to load
 
+html = driver.page_source
+soup = BeautifulSoup(html, "html.parser")
 
+text = soup.get_text(separator="\n", strip=True)
+for line in text.splitlines():
+    if "34130" in line :
+        print(line)
 
-WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
-LAST_VALUE_FILE = "lastvalue.txt"
-
-TIME_CHECK = 120 #seconds
+# print(text)
 
 def send_message(msg):
     requests.post(WEBHOOK_URL, json={"content": msg})
@@ -65,16 +76,3 @@ while False:
         save_last_value(current)
 
     time.sleep(TIME_CHECK)
-
-# get_current_value()
-
-
-
-session = requests.Session()
-
-response = session.post(URL, data=data)
-soup = BeautifulSoup(response.text, "html.parser")
-
-text = soup.get_text(separator="\n", strip=True)
-
-print(text)
