@@ -11,6 +11,7 @@ driver.get("https://www.reg.uci.edu/perl/WebSoc")
 
 # 2. Select department drop-down
 dept_dropdown = Select(driver.find_element(By.NAME, "Dept")) 
+depts = dict()
 dept_dropdown.select_by_visible_text("COMPSCI . . . . Computer Science")
 time.sleep(1)
 
