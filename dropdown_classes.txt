@@ -1,0 +1,151 @@
+ac eng 
+afam
+anatomy
+anesth
+anthro
+arabic
+armn
+art
+art his
+arts
+artshum
+asianam
+asl
+bana
+bats
+bio sci
+biochem
+bme
+camprec
+cbe
+cem 
+chc/lat
+chem
+chinese
+classic
+clt&thy
+cogs
+com lit
+compsci
+critism
+crm/law
+cse
+dance
+data
+derm
+dev bio
+drama
+earthss
+eas
+eco evo
+econ
+ecps
+ed aff
+educ
+eecs
+ehs
+english
+engr
+engrcee
+engrmae
+engrmse
+epidem
+er med
+euro st
+fam med
+filipino
+fin
+flm&mda
+french
+gdim
+gen&sex
+german
+glbl me
+glblclt
+greek
+hebrew
+hindi
+history
+human
+humarts
+i&c sci
+in4matx
+inno
+int med
+intl st
+iran
+italian
+japanese
+korean
+latin
+law
+lit jrn
+lps
+lsci
+m&mg
+math
+med
+med ed
+med hum
+mgmt
+mgmt ep
+mgmt fe
+mgmt hc
+mgmtmba
+mgmtphd
+mic bio
+mnge
+mol bio
+mpac
+mse
+music
+net sys
+neurbio
+neurol
+nur dnp
+nur fnp
+nur inf
+nur sci
+ob/gyn
+ophthal
+path
+ped gen
+peds
+persian
+pharm
+philos
+phmd
+phrmsci
+phy sci
+physics
+pysio
+plastic
+pm&r
+poli sci
+portug
+psci
+psmd
+psych
+pub pol
+pubhlth
+radio
+rel std
+rotc
+russian
+soc sci
+socecol
+sociol
+spanish
+spps
+stats
+surgery
+swe
+tagalog
+tox
+ucdc
+uni aff
+uni stu
+uppp
+vietmse
+vis std
+writing

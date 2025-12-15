@@ -1,0 +1,151 @@
+ac eng 			 AC ENG . . . . . .Academic English
+afam 			 AFAM . . . . . . . African American Studies
+anatomy 			 ANATOMY . . . .Anatomy and Neurobiology
+anesth 			 ANESTH . . . . . Anesthesiology
+anthro 			 ANTHRO . . . . . Anthropology
+arabic 			 ARABIC . . . . . .Arabic
+armn 			 ARMN . . . . . . .Armenian
+art 			 ART . . . . . . . . .Art
+art his 			 ART HIS . . . . . .Art History
+arts 			 ARTS . . . . . . . Arts
+artshum 			 ARTSHUM . . . . Arts and Humanities
+asianam 			 ASIANAM . . . . Asian American Studies
+asl 			 ASL . . . . . . . . .American Sign Language (started 2025 Spg)
+bana 			 BANA . . . . . . . Business Analytics
+bats 			 BATS . . . . . . . Biomedical and Translational Science
+bio sci 			 BIO SCI . . . . . .Biological Sciences
+biochem 			 BIOCHEM . . . . Biological Chemistry
+bme 			 BME . . . . . . . . Biomedical Engineering
+camprec 			 CREC . . . .Campus Recreation
+cbe 			 CBE . . . . . . . . Chemical and Biomolecular Engineering
+cem 			 CEM . . . . . . . . Community and Environmental Medicine
+chc/lat 			 CHC/LAT . . . . . Chicano Latino
+chem 			 CHEM . . . . . . .Chemistry
+chinese 			 CHINESE . . . . .Chinese
+classic 			 CLASSIC . . . . .Classics
+clt&thy 			 CLT&THY . . . . .Culture and Theory
+cogs 			 COGS . . . . . . . Cognitive Sciences
+com lit 			 COM LIT . . . . . Comparative Literature
+compsci 			 COMPSCI . . . . Computer Science
+critism 			 CRITISM . . . . . Criticism
+crm/law 			 CRM/LAW . . . . Criminology, Law and Society
+cse 			 CSE . . . . . . . . Computer Science and Engineering
+dance 			 DANCE . . . . . . Dance
+data 			 DATA . . . . . . . Data Science (started 2022 SS1)
+derm 			 DERM . . . . . . .Dermatology
+dev bio 			 DEV BIO . . . . . Developmental and Cell Biology
+drama 			 DRAMA . . . . . .Drama
+earthss 			 EARTHSS . . . . Earth System Science
+eas 			 EAS . . . . . . . . East Asian Studies
+eco evo 			 ECO EVO . . . . Ecology and Evolutionary Biology
+econ 			 ECON . . . . . . . Economics
+ecps 			 ECPS . . . . . . . Embedded and Cyber-Physical Systems
+ed aff 			 ED AFF . . . . . .Educational Affairs (Sch of Med)
+educ 			 EDUC . . . . . . . Education
+eecs 			 EECS . . . . . . . Electrical Engineering and Computer Science
+ehs 			 EHS . . . . . . . . Environmental Health Sciences
+english 			 ENGLISH . . . . .English
+engr 			 ENGR . . . . . . . Engineering
+engrcee 			 ENGRCEE . . . .Civil and Environmental Engineering
+engrmae 			 ENGRMAE . . . .Mechanical and Aerospace Engineering
+engrmse 			 ENGRMSE . . . .Materials Science and Engineering (until 2020 SS2)
+epidem 			 EPIDEM . . . . . .Epidemiology
+er med 			 ER MED . . . . . Emergency Medicine
+euro st 			 EURO ST . . . . .European Studies
+fam med 			 FAM MED . . . . Family Medicine
+filipino 			 FILIPNO . . . . . .Filipino (started 2025 Spg)
+fin 			 FIN . . . . . . . . . Finance
+flm&mda 			 FLM&MDA . . . .Film and Media Studies
+french 			 FRENCH . . . . . French
+gdim 			 GDIM . . . . . . . .Game Design and Interactive Media (started 2021 Fall)
+gen&sex 			 GEN&SEX . . . . Gender and Sexuality Studies
+german 			 GERMAN . . . . .German
+glbl me 			 GLBL ME . . . . .Global Middle East Studies
+glblclt 			 GLBLCLT . . . . .Global Cultures
+greek 			 GREEK . . . . . . Greek
+hebrew 			 HEBREW . . . . .Hebrew
+hindi 			 HINDI . . . . . . . .Hindi
+history 			 HISTORY . . . . .History
+human 			 HUMAN . . . . . .Humanities
+humarts 			 HUMARTS . . . . Humanities and Arts
+i&c sci 			 I&C SCI . . . . . . Information and Computer Science
+in4matx 			 IN4MATX . . . . . Informatics
+inno 			 INNO . . . . . . . .Innovation and Entrepreneurship
+int med 			 INT MED . . . . . Internal Medicine
+intl st 			 INTL ST . . . . . . International Studies
+iran 			 IRAN . . . . . . . .Iranian (started 2020 Fall)
+italian 			 ITALIAN . . . . . .Italian
+japanese 			 JAPANSE . . . . Japanese
+korean 			 KOREAN . . . . .Korean
+latin 			 LATIN . . . . . . . Latin
+law 			 LAW . . . . . . . . Law
+lit jrn 			 LIT JRN . . . . . . Literary Journalism
+lps 			 LPS . . . . . . . . .Logic and Philosophy of Science
+lsci 			 LSCI . . . . . . . . Language Science
+m&mg 			 M&MG . . . . . . .Microbiology and Molecular Genetics
+math 			 MATH . . . . . . . Mathematics
+med 			 MED . . . . . . . . Medicine
+med ed 			 MED ED . . . . . Medical Education
+med hum 			 MED HUM . . . . Medical Humanities
+mgmt 			 MGMT . . . . . . .Management
+mgmt ep 			 MGMT EP . . . . Executive MBA
+mgmt fe 			 MGMT FE . . . . Fully Employed MBA
+mgmt hc 			 MGMT HC . . . . Health Care MBA
+mgmtmba 			 MGMTMBA . . . Management MBA
+mgmtphd 			 MGMTPHD . . . .Management PhD
+mic bio 			 MIC BIO . . . . . .Microbiology
+mnge 			 MNGE . . . . . . .Master in Management (started 2025 Spg)
+mol bio 			 MOL BIO . . . . . Molecular Biology and Biochemistry
+mpac 			 MPAC . . . . . . .Accounting
+mse 			 MSE . . . . . . . . Materials Science and Engineering (started 2020 Fall)
+music 			 MUSIC . . . . . . .Music
+net sys 			 NET SYS . . . . .Networked Systems
+neurbio 			 NEURBIO . . . . .Neurobiology and Behavior
+neurol 			 NEUROL . . . . . Neurology
+nur dnp 			 NUR DNP . . . . .Nursing Practice (started 2025 Fall)
+nur fnp 			 NUR FNP . . . . .Nurse Practitioner (started 2025 Fall)
+nur inf 			 NUR INF . . . . . Nursing Informatics (started 2025 Fall)
+nur sci 			 NUR SCI . . . . . Nursing Science
+ob/gyn 			 OB/GYN . . . . . Obstetrics and Gynecology
+ophthal 			 OPHTHAL . . . . Ophthalmology and Visual Sciences
+path 			 PATH . . . . . . . Pathology and Laboratory Medicine
+ped gen 			 PED GEN . . . . Pediatrics Genetics
+peds 			 PEDS . . . . . . . Pediatrics
+persian 			 PERSIAN . . . . .Persian
+pharm 			 PHARM . . . . . .Pharmacology (started 2020 Fall)
+philos 			 PHILOS . . . . . .Philosophy
+phmd 			 PHMD . . . . . . .Pharmacy (started 2021 Fall)
+phrmsci 			 PHRMSCI . . . . Pharmaceutical Sciences
+phy sci 			 PHY SCI . . . . . Physical Science
+physics 			 PHYSICS . . . . .Physics
+pysio 			 PHYSIO . . . . . .Physiology and Biophysics
+plastic 			 PLASTIC . . . . . Plastic Surgery
+pm&r 			 PM&R . . . . . . .Physical Medicine and Rehabilitation
+poli sci 			 POL SCI . . . . . Political Science
+portug 			 PORTUG . . . . . Portuguese
+psci 			 PSCI . . . . . . . .Psychological Science
+psmd 			 PSMD . . . . . . .Psychiatry (started 2025 Fall)
+psych 			 PSYCH . . . . . . Psychology (until 2025 SS2)
+pub pol 			 PUB POL . . . . .Public Policy
+pubhlth 			 PUBHLTH . . . . Public Health
+radio 			 RADIO . . . . . . .Radiology
+rel std 			 REL STD . . . . . Religious Studies
+rotc 			 ROTC . . . . . . . Reserve Officers' Training Corps
+russian 			 RUSSIAN . . . . .Russian
+soc sci 			 SOC SCI . . . . . Social Science
+socecol 			 SOCECOL . . . . Social Ecology
+sociol 			 SOCIOL . . . . . .Sociology
+spanish 			 SPANISH . . . . .Spanish
+spps 			 SPPS . . . . . . . Social Policy and Public Service
+stats 			 STATS . . . . . . .Statistics
+surgery 			 SURGERY . . . .Surgery
+swe 			 SWE . . . . . . . .Software Engineering
+tagalog 			 TAGALOG . . . . Tagalog
+tox 			 TOX . . . . . . . . .Toxicology
+ucdc 			 UCDC . . . . . . . UC Washington DC
+uni aff 			 UNI AFF . . . . . .University Affairs
+uni stu 			 UNI STU . . . . . .University Studies
+uppp 			 UPPP . . . . . . . Urban Planning and Public Policy
+vietmse 			 VIETMSE . . . . .Vietnamese
+vis std 			 VIS STD . . . . . .Visual Studies
+writing 			 WRITING . . . . . Writing
