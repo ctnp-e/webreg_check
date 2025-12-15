@@ -3,4 +3,7 @@ TODO:
 - adjust classes from disc
 - multiple classes watched
 - txt file doesnt overflow pls
-- test if it even properly updates from website :sob:
+
+UPDATE: IT WORKS. I GOT INTO COMPSCI 142a USING HTIS WEBSITE
+
+
