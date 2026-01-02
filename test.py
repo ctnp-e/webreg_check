@@ -6,8 +6,8 @@ import time
 # Configure your driver (Chrome in this example)
 driver = webdriver.Chrome()
 
-# Load WebSOC page
-driver.get("https://www.reg.uci.edu/perl/WebSoc")
+# Load de_anza
+driver.get("https://www.deanza.edu/schedule/listings.html?dept=BIOL&t=W2026")
 
 # 2. Select department drop-down
 dept_dropdown = Select(driver.find_element(By.NAME, "Dept")) 

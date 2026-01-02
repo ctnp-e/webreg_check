@@ -3,6 +3,8 @@ import asyncio
 import sys
 import web_check
 
+# this is ONLY if you wnat to make a bot that starts and stops in a discord server
+
 TOKEN =  web_check.BOT_TOKEN
 EXIT_CHANNEL_ID = web_check.CHANNEL_ID
 

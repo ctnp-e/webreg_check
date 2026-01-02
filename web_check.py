@@ -47,6 +47,7 @@ def add_to_curr_vals(particular_inp) :
     #     print(str(ohyea) + " : " + line)
     #     ohyea += 1
     
+    '''
     total_len = len(result)
     max = result[total_len-7]
     curr = result[total_len-6]
@@ -57,6 +58,9 @@ def add_to_curr_vals(particular_inp) :
         sad_alert(max, curr)
 
     print_to_curr_vals( str(max) + " " + str(curr))
+    '''
+    
+    print_to_curr_vals( particular_inp)
 
 
 def print_to_curr_vals(line) :
@@ -72,27 +76,8 @@ def GO() :
     options.add_argument("--disable-gpu")           # recommended on Windows
     
     driver = webdriver.Chrome(options=options)
-    driver.get("https://www.reg.uci.edu/perl/WebSoc") # loads WebSOC page
+    driver.get("https://www.deanza.edu/schedule/listings.html?dept=BIOL&t=W2026") # loads DE ANZA page
 
-    # select dept via drop down
-    # TODO : make dict to select from terminal
-    dept_dropdown = Select(driver.find_element(By.NAME, "Dept")) 
-    dept_dropdown.select_by_visible_text("COMPSCI . . . . Computer Science")
-    time.sleep(0.1)
-
-    # select particular course num
-    # TODO : make this optional
-    input_box = driver.find_element(By.NAME, "CourseNum")
-    input_box.send_keys("142a")
-
-    # select particular instructor
-    # TODO : make this optional
-    input_box = driver.find_element(By.NAME, "InstrName")
-    input_box.send_keys("demsky")
-
-
-    driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Text Results']").click()
-    time.sleep(0.5)  # wait for results to load
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
@@ -101,7 +86,7 @@ def GO() :
     # finds exact course
     text = soup.get_text(separator="\n", strip=True)
     for line in text.splitlines():
-        if "34130" in line :
+        if "BIOL 40A" in line :
             add_to_curr_vals(line)
     
     
