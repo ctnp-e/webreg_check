@@ -1,104 +1,116 @@
 import requests
 from bs4 import BeautifulSoup
-import json
 import time
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
-import time
+import datetime
 
 
-with open("webhook_val.txt", "r") as f:
-    for line in f:
-        if "webhook:" in line:
-            WEBHOOK_URL = line.split("webhook:")[1].strip()
-        elif "bot_token:" in line:
-            BOT_TOKEN = line.split("bot_token:")[1].strip()
-        elif "channel_id:" in line:
-            CHANNEL_ID = int(line.split("channel_id:")[1].strip())
-        elif "user:" in line:
-            USER = int(line.split("user:")[1].strip())
-    #print(data)
+# --- SETUP ---
+# Default placeholders
+WEBHOOK_URL = ""
+BOT_TOKEN = ""
+CHANNEL_ID = 0
+USER = 0
+TIME_CHECK = 5 # 30 Minutes
+URL = "https://www.deanza.edu/schedule/listings.html?dept=BIOL&t=W2026"
 
-# WEBHOOK_URL = "YOUR_DISCORD_WEBHOOK_HERE"
-LAST_VALUE_FILE = "lastvalue.txt"
-TIME_CHECK = 1800 #seconds
-
-
-
-# print(text)
+# Load Credentials
+try:
+    with open("inp.txt", "r") as f:
+        for line in f:
+            if "webhook:" in line:
+                WEBHOOK_URL = line.split("webhook:")[1].strip()
+            elif "bot_token:" in line:
+                BOT_TOKEN = line.split("bot_token:")[1].strip()
+            elif "channel_id:" in line:
+                CHANNEL_ID = int(line.split("channel_id:")[1].strip())
+            elif "user:" in line:
+                USER = int(line.split("user:")[1].strip())
+except FileNotFoundError:
+    print("Warning: webhook_val.txt not found.")
 
 def send_message(msg):
-    requests.post(WEBHOOK_URL, json={"content": msg})
+    if WEBHOOK_URL:
+        requests.post(WEBHOOK_URL, json={"content": msg})
+    else:
+        print("Log (No Webhook): " + msg)
 
-def alert(max, curr):
-    send_message(f"Value changed! REGISTER NOW!\nMAX: {max}\tCURR: {curr} <@{USER}>")
+# --- CORRECTED ALERT FUNCTIONS ---
 
-def sad_alert(max, curr) :
-    send_message(f"No change detected... :( \t\t MAX: {max}\tCURR: {curr}")
-
-def add_to_curr_vals(particular_inp) :
-    result = particular_inp.strip().split(" ")
-    result = [x for x in result if x.strip()]
-
-    # ohyea = 0
-    # for line in result:
-    #     print(str(ohyea) + " : " + line)
-    #     ohyea += 1
-    
-    '''
-    total_len = len(result)
-    max = result[total_len-7]
-    curr = result[total_len-6]
-    # curr = 1 #testing
-    if (curr != max) :
-        alert(max, curr)
-    else :
-        sad_alert(max, curr)
-
-    print_to_curr_vals( str(max) + " " + str(curr))
-    '''
-    
-    print_to_curr_vals( particular_inp)
+def alert(line):
+    msg = (f"**CLASS OPEN! REGISTER NOW!**\n"
+           f"**Listing:** {line}\n"
+           f"<@{USER}>\n"
+           f"[Link to Schedule]({URL})")
+    send_message(msg)
+    print("!!! ALERT SENT !!!")
 
 
-def print_to_curr_vals(line) :
+
+def sad_alert(line_text):
+    timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+    send_message(f"[{timestamp}] Checked: {line_text[:30]}... (Status: No Change)")
+    print("FUCK!")
+
+def log_val(line):
     with open("current_vals.txt", "a") as f:
-        f.write(str(round(time.time())) + " : " + line + "\n")
+        f.write(f"{round(time.time())} : {line}\n")
+
+# --- MAIN SCRAPER ---
+
+def GO():
+
     
-
-
-def GO() :
-
     options = Options()
-    options.add_argument("--headless")              # Chrome runs with NO window
-    options.add_argument("--disable-gpu")           # recommended on Windows
-    
+    # options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--window-size=400,300")
+    options.add_argument("--window-position=0,0")  # top-left
+        
     driver = webdriver.Chrome(options=options)
-    driver.get("https://www.deanza.edu/schedule/listings.html?dept=BIOL&t=W2026") # loads DE ANZA page
-
+    
+    driver.get(URL)
+    time.sleep(5) 
 
     html = driver.page_source
     soup = BeautifulSoup(html, "html.parser")
 
-    particular_inp = ""
-    # finds exact course
+
     text = soup.get_text(separator="\n", strip=True)
+
     for line in text.splitlines():
-        if "BIOL 40A" in line :
-            add_to_curr_vals(line)
-    
-    
+        
+        if "BIOL 40A" in line.upper():
+            
+
+            print (line)
+            # log_val(line)
+
+            # if "OPEN" in line.upper():
+            #     alert(line)
+            #     print(f"FOUND OPEN CLASS: {line}")
+            # elif "FULL" in line.upper():
+            #     sad_alert(line + " [IS FULL]")
+            # elif "WL" in line.upper() or "WAITLIST" in line.upper():
+            #     sad_alert(line + " [IS WAITLIST]")
+            # else:
+            #     print ("HELLO")
+            #     sad_alert(line + " [UNKNOWN STATUS]")
+
     driver.quit()
 
-
 def main():
-
-    open('current_vals.txt', 'w').close()
+    with open('current_vals.txt', 'w') as f:
+        f.write("--- Log Started ---\n")
+    
+    print("Bot started. Press Ctrl+C to stop.")
     
     while True:
         GO()
+        print("we went")
         time.sleep(TIME_CHECK)
+        
 
-GO()
+if __name__ == "__main__":
+    main()
