@@ -1,12 +1,12 @@
 import discord
 import asyncio
 import sys
-import web_check
+import de_anza_webhook_web_check
 
 # this is ONLY if you wnat to make a bot that starts and stops in a discord server
 
-TOKEN =  web_check.BOT_TOKEN
-EXIT_CHANNEL_ID = web_check.CHANNEL_ID
+TOKEN =  de_anza_webhook_web_check.BOT_TOKEN
+EXIT_CHANNEL_ID = de_anza_webhook_web_check.CHANNEL_ID
 
 
 intents = discord.Intents.default()
@@ -20,8 +20,8 @@ async def check_websoc_forever():
     global stop_program
     while not stop_program:
         print("Running GO()...")
-        web_check.GO()
-        await asyncio.sleep(web_check.TIME_CHECK)
+        de_anza_webhook_web_check.GO()
+        await asyncio.sleep(de_anza_webhook_web_check.TIME_CHECK)
 
     print("Program stopped by Discord message")
     await client.close()
