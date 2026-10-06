@@ -48,9 +48,6 @@ COMPSCI . . . . Computer Science, 164, eppstein
 py run.py
 ```
 
-That's it.
-
----
 
 ## Discord commands
 
@@ -65,7 +62,6 @@ All commands start with `.webreg`:
 
 Pausing/restoring only lasts the current session — restarting `run.py` resets everything back to watching all classes in `classes.txt`.
 
----
 
 ## De Anza
 
@@ -75,6 +71,17 @@ A separate bot for De Anza College is in the `de_anza/` folder.
 2. Run: `py de_anza/discord_bot.py`
 
 ---
+
+## TODO
+- ~~start from disc~~ too hard.
+- ~~adjust classes from disc~~ done!
+- update the de anza one
+- try to make it prettier? move away from discord?
+
+## Changelog
+- 1.1.26 — De Anza added, semi works, for mia
+- 10.6.26 — multiple classes support added
+
 
 ## File structure
 
