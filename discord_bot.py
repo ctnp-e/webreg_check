@@ -1,6 +1,6 @@
 import discord
 import asyncio
-import sys
+import os
 import web_check
 
 TOKEN = web_check.BOT_TOKEN
@@ -23,7 +23,7 @@ async def check_websoc_forever():
 
     print("Program stopped by Discord message")
     await client.close()
-    sys.exit(0)
+    os._exit(0)
 
 
 @client.event
