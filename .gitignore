@@ -2,4 +2,6 @@ webhook_val.txt
 current_vals.txt
 .env
 classes.txt
+de_anza/.env
+de_anza/current_vals.txt
 /.claude
