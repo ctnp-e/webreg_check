@@ -1,12 +1,15 @@
 # WebReg Checker
 
-Monitors UCI WebSOC (and optionally De Anza) for open class spots and sends Discord alerts.
+Monitors UCI WebSOC (and optionally De Anza.. to be improved lol) for open class spots and sends Discord alerts.
 
-> IT WORKS — got into COMPSCI 142a using this!
+> IT WORKS. got into COMPSCI 142a using this!
 
 ---
 
 ## Setup
+
+### 0. creating a discord app...
+> I honestly forgot how to do this. maybe ask your own AI. I mean, you can tell, after like... part of the year, it was just smoothed over with claude (hello claude). You want to create a discord app and add it to a server where you'll have the webreg instanity stuff occuring. I reccomend making your own personal server because who would want to be pinged like this? anyways. this does actually work, though you have to keep your pc running the whole time. 
 
 ### 1. Credentials — `.env`
 
