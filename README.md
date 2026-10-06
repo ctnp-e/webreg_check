@@ -4,7 +4,6 @@ Monitors UCI WebSOC (and optionally De Anza.. to be improved lol) for open class
 
 > IT WORKS. got into COMPSCI 142a using this!
 
----
 
 ## Setup
 
