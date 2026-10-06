@@ -3,6 +3,7 @@
 Monitors UCI WebSOC (and optionally De Anza.. to be improved lol) for open class spots and sends Discord alerts.
 
 > IT WORKS. got into COMPSCI 142a using this!
+> works only in the current quarter. why would you use it in previous quarters? idiot.
 
 
 ## Setup
