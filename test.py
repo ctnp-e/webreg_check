@@ -6,11 +6,12 @@ import time
 # Configure your driver (Chrome in this example)
 driver = webdriver.Chrome()
 
-# Load WebSOC page
-driver.get("https://www.reg.uci.edu/perl/WebSoc")
+# Load de_anza
+driver.get("https://www.deanza.edu/schedule/listings.html?dept=BIOL&t=W2026")
 
 # 2. Select department drop-down
 dept_dropdown = Select(driver.find_element(By.NAME, "Dept")) 
+depts = dict()
 dept_dropdown.select_by_visible_text("COMPSCI . . . . Computer Science")
 time.sleep(1)
 
@@ -27,3 +28,4 @@ driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Text R
 time.sleep(2)  # wait for results to load
 
 
+#test
