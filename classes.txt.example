@@ -1,0 +1,32 @@
+# ============================================================
+#  CLASSES TO MONITOR
+# ============================================================
+#
+#  Add one class per line. Three formats are supported:
+#
+#  1. SECTION CODE ONLY — just the 5-digit code:
+#       34210
+#
+#  2. CLASS INFO ONLY — dept, course number, instructor:
+#       COMPSCI . . . . Computer Science, 164, eppstein
+#       Watches ALL sections under that class automatically.
+#
+#  3. FULL — section code + class details (recommended):
+#       34210, COMPSCI . . . . Computer Science, 164, eppstein
+#       ^^^^^^  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  ^^^  ^^^^^^^^
+#       |       dept (copy exactly from WebSOC)  |    instructor last name
+#       section code                             course number
+#       Validates at startup that the section code matches the class.
+#
+#  Lines that start with # are ignored (like this one).
+#  You can mix formats and add as many classes as you want.
+# ============================================================
+
+# Example 1: section code only
+34210
+
+# Example 2: class info only (watches all sections)
+COMPSCI . . . . Computer Science, 164, eppstein
+
+# Example 3: full (with startup validation)
+34210, COMPSCI . . . . Computer Science, 164, eppstein
