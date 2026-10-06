@@ -50,27 +50,31 @@ async def on_message(message):
         return
 
     content = message.content.strip()
-    cmd = content.lower()
+    if not content.startswith(".webreg "):
+        return
+
+    args = content[8:].strip()
+    cmd = args.lower()
 
     if cmd == "exit":
         stop_program = True
         await message.channel.send("Stopping WebSOC monitor...")
 
     elif cmd.startswith("remove "):
-        key = content[7:].strip()
+        key = args[7:].strip()
         if key in watch:
             watch[key] = 0
             await message.channel.send(f"Paused watching **{key}**.")
         else:
-            await message.channel.send(f"Unknown class **{key}**. Use `list` to see valid keys.")
+            await message.channel.send(f"Unknown class **{key}**. Use `.webreg list` to see valid keys.")
 
     elif cmd.startswith("restore "):
-        key = content[8:].strip()
+        key = args[8:].strip()
         if key in watch:
             watch[key] = 1
             await message.channel.send(f"Resumed watching **{key}**.")
         else:
-            await message.channel.send(f"Unknown class **{key}**. Use `list` to see valid keys.")
+            await message.channel.send(f"Unknown class **{key}**. Use `.webreg list` to see valid keys.")
 
     elif cmd == "list":
         lines = [
@@ -78,6 +82,15 @@ async def on_message(message):
             for key, status in watch.items()
         ]
         await message.channel.send("**Currently watching:**\n" + "\n".join(lines))
+
+    else:
+        await message.channel.send(
+            "Unknown command. Available commands:\n"
+            "`.webreg list` — show all classes\n"
+            "`.webreg remove <code>` — pause a class\n"
+            "`.webreg restore <code>` — resume a class\n"
+            "`.webreg exit` — stop the bot"
+        )
 
 
 client.run(TOKEN)
