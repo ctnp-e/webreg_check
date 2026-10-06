@@ -1,24 +1,20 @@
 import requests
 from bs4 import BeautifulSoup
 import time
+import os
+from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
 
+load_dotenv()
 
-with open("webhook_val.txt", "r") as f:
-    for line in f:
-        if "webhook:" in line:
-            WEBHOOK_URL = line.split("webhook:")[1].strip()
-        elif "bot_token:" in line:
-            BOT_TOKEN = line.split("bot_token:")[1].strip()
-        elif "channel_id:" in line:
-            CHANNEL_ID = int(line.split("channel_id:")[1].strip())
-        elif "user:" in line:
-            USER = int(line.split("user:")[1].strip())
-
-TIME_CHECK = 1800  # seconds between checks
+WEBHOOK_URL   = os.getenv("WEBHOOK_URL")
+BOT_TOKEN     = os.getenv("BOT_TOKEN")
+CHANNEL_ID    = int(os.getenv("CHANNEL_ID"))
+USER          = int(os.getenv("USER_ID"))
+SECTION_CODE  = os.getenv("SECTION_CODE")
+TIME_CHECK    = int(os.getenv("CHECK_INTERVAL", 1800))
 
 
 def send_message(msg):
@@ -30,24 +26,14 @@ def alert(max_enroll, curr_enroll):
 def sad_alert(max_enroll, curr_enroll):
     send_message(f"No change detected... :( \t\t MAX: {max_enroll}\tCURR: {curr_enroll}")
 
-def add_to_curr_vals(line):
-    result = [x for x in line.strip().split(" ") if x.strip()]
-
-    total_len = len(result)
-    max_enroll = result[total_len - 7]
-    curr_enroll = result[total_len - 6]
-
+def record_and_alert(max_enroll, curr_enroll):
+    print(f"MAX: {max_enroll}  ENR: {curr_enroll}")
     if curr_enroll != max_enroll:
         alert(max_enroll, curr_enroll)
     else:
         sad_alert(max_enroll, curr_enroll)
-
-    print_to_curr_vals(f"{max_enroll} {curr_enroll}")
-
-
-def print_to_curr_vals(line):
     with open("current_vals.txt", "a") as f:
-        f.write(f"{round(time.time())} : {line}\n")
+        f.write(f"{round(time.time())} : {max_enroll} {curr_enroll}\n")
 
 
 def GO():
@@ -58,22 +44,37 @@ def GO():
     driver = webdriver.Chrome(options=options)
     driver.get("https://www.reg.uci.edu/perl/WebSoc")
 
-    dept_dropdown = Select(driver.find_element(By.NAME, "Dept"))
-    dept_dropdown.select_by_visible_text("COMPSCI . . . . Computer Science")
-    time.sleep(0.1)
-
-    driver.find_element(By.NAME, "CourseNum").send_keys("142a")
-    driver.find_element(By.NAME, "InstrName").send_keys("demsky")
-
-    driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Text Results']").click()
+    # Search by section code only — no dept/instructor needed
+    driver.find_element(By.NAME, "CourseCodes").send_keys(SECTION_CODE)
+    driver.find_element(By.XPATH, "//input[@type='submit' and @value='Display Web Results']").click()
     time.sleep(0.5)
 
     soup = BeautifulSoup(driver.page_source, "html.parser")
     driver.quit()
 
-    for line in soup.get_text(separator="\n", strip=True).splitlines():
-        if "34130" in line:
-            add_to_curr_vals(line)
+    # Find the enrollment table by locating the header row with "Max" and "Enr"
+    for table in soup.find_all("table"):
+        header_cells = table.find_all("th")
+        if not header_cells:
+            continue
+        headers = [th.get_text(strip=True) for th in header_cells]
+        if "Max" not in headers or "Enr" not in headers:
+            continue
+
+        max_idx = headers.index("Max")
+        enr_idx = headers.index("Enr")
+
+        for row in table.find_all("tr"):
+            cells = row.find_all("td")
+            if not cells:
+                continue
+            if cells[0].get_text(strip=True) == SECTION_CODE:
+                max_enroll  = cells[max_idx].get_text(strip=True)
+                curr_enroll = cells[enr_idx].get_text(strip=True)
+                record_and_alert(max_enroll, curr_enroll)
+                return
+
+    print(f"Section {SECTION_CODE} not found in results — check that the section code is correct and the quarter is active.")
 
 
 def main():

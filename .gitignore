@@ -1,2 +1,4 @@
 webhook_val.txt
 current_vals.txt
+.env
+/.claude
