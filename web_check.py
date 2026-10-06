@@ -260,10 +260,19 @@ def check_class(cls):
         record_and_alert(enriched, *result)
 
 
-def GO():
+def class_key(cls):
+    """Stable dict key for a class — section code if available, otherwise course/instructor."""
+    if cls["code"]:
+        return cls["code"]
+    return f"{cls['course_num']}/{cls['instructor']}"
+
+
+def GO(watch=None):
+    """Check all classes. If watch dict is provided, skip any with value 0."""
     classes = load_classes()
-    print(f"Checking {len(classes)} class(es)...")
-    for cls in classes:
+    active = [cls for cls in classes if watch is None or watch.get(class_key(cls), 1)]
+    print(f"Checking {len(active)} class(es)...")
+    for cls in active:
         check_class(cls)
 
 

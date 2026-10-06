@@ -1,4 +1,0 @@
-webhook: https://discord.com/api/webhooks/.../...
-bot_token:
-channel_id: 1234324123412341324
-user: 12341234131234143
